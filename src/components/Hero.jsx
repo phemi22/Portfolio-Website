@@ -1,6 +1,7 @@
 import React from "react";
 import { Github, Twitter, Linkedin, Mail } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
+import {motion} from "framer-motion";
 
 const Hero = () => {
   const { isDark } = useTheme();
@@ -10,9 +11,12 @@ const Hero = () => {
       isDark ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" : "bg-gradient-to-br from-gray-100 via-white to-gray-100"
     }`}>
       <div className="max-w-6xl mx-auto text-center">
-        <h1 className={`text-4xl md:text-6xl font-bold ${isDark ? "text-white" : "text-gray-900"} mb-6`}>
-          Hi, I'm <span className="text-blue-500">Femi Adedokun</span>
-        </h1>
+        <motion.h1 initial={{ x: "-100vw", opacity: 0 }} // Start off-screen
+            animate={{ x: 0, opacity: 1 }}        // Move to the final position
+            transition={{ duration: 3, ease: "easeOut", repeat: 2, repeatType: "reverse" }}
+            className={`text-4xl md:text-6xl font-bold ${isDark ? "text-white" : "text-gray-900"} mb-6`}
+        >   Hi, I'm <span className="text-blue-500">Femi Adedokun</span>
+        </motion.h1>
         <p className={`text-xl md:text-2xl ${isDark ? "text-gray-300" : "text-gray-600"} mb-8`}>
           Front End Developer | UI/UX Designer
         </p>
